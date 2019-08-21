@@ -1,14 +1,23 @@
 # SPEDBr
+[![Nuget downloads](https://img.shields.io/nuget/dt/SPEDBr.NET.svg)](https://www.nuget.org/packages/SPEDBr.NET/)
+[![Nuget count](https://img.shields.io/nuget/v/SPEDBr.NET.svg)](https://www.nuget.org/packages/SPEDBr.NET/)
 ###### SITE OFICIAL DO SPED: http://sped.rfb.gov.br/
 Biblioteca gratuita  - desenvolvida com Visual Studio Community 2017 - para geração dos arquivos SPED e demais declarações necessárias no cenário contábil/fiscal brasileiro.
 
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) <b>AVISO IMPORTANTE</b>
 
-Esta biblioteca será atualizada até 31/12/2019, após esse prazo será descontinuada e novas atualizações serão feitas em um novo repositório, para acessar [clique aqui](https://github.com/samuelrochaoliveira/SPEDBr).
+Esta biblioteca será atualizada até 31/12/2019, após esse prazo será descontinuada e novas atualizações serão feitas em um novo repositório, para acessar [clique aqui](https://github.com/samuelrochaoliveira/FiscalBr.NET).
 
 ## Doações [![Donate](https://img.shields.io/badge/Doações-Doare-ff69b4.svg)](http://doa.re/k3jpt)
 
 Se o projeto lhe ajudou ou contribuiu de alguma forma, faça uma doação. :D Ajude a dar continuidade nesse projeto.
+
+## TODO
+
+- [ ] Implementar Factory Pattern para facilitar uso da biblioteca.
+- [ ] Mapear enums restantes do SPED e implementar leitura dos layouts.
+- [ ] Mapear registros restantes da EFD Contribuições. [#28](https://github.com/samuelrochaoliveira/SPEDBr/issues/28)
+- [ ] Melhorar performance na geração das linhas, monitorar tempo da geração.
 
 ## Sumário
 
@@ -34,12 +43,6 @@ Se o projeto lhe ajudou ou contribuiu de alguma forma, faça uma doação. :D Aj
 ## Outros
 - [x] [SINTEGRABr](https://github.com/samuelroliveira/SINTEGRABr)
 - [ ] [FISCALBr](https://github.com/samuelroliveira/FiscalBr)
-
-## TODO
-
-- [ ] Mapear enums restantes do SPED.
-- [ ] Mapear registros restantes da EFD Contribuições. [#28](https://github.com/samuelrochaoliveira/SPEDBr/issues/28)
-- [ ] Melhorar performance na geração das linhas, monitorar tempo da geração.
 
 ## Exemplos
 

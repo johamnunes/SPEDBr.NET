@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SpedBr.Common;
 
 namespace SpedBr.SpedFiscal
@@ -8,6 +9,9 @@ namespace SpedBr.SpedFiscal
     /// </summary>
     public class BlocoC
     {
+        public RegistroC001 RegC001 { get; set; }
+        public RegistroC990 RegC990 { get; set; }
+
         /// <summary>
         ///     REGISTRO C001: ABERTURA DO BLOCO C
         /// </summary>
@@ -26,6 +30,17 @@ namespace SpedBr.SpedFiscal
             /// </summary>
             [SpedCampos(2, "IND_MOV", "N", 1, 0, true)]
             public IndMovimento IndMov { get; set; }
+
+            public List<RegistroC100> RegC100s { get; set; }
+            public List<RegistroC300> RegC300s { get; set; }
+            public List<RegistroC350> RegC350s { get; set; }
+            public List<RegistroC400> RegC400s { get; set; }
+            public List<RegistroC495> RegC495s { get; set; }
+            public List<RegistroC500> RegC500s { get; set; }
+            public List<RegistroC600> RegC600s { get; set; }
+            public List<RegistroC700> RegC700s { get; set; }
+            public List<RegistroC800> RegC800s { get; set; }
+            public List<RegistroC860> RegC860s { get; set; }
         }
 
         /// <summary>
@@ -39,39 +54,7 @@ namespace SpedBr.SpedFiscal
             public RegistroC100()
             {
                 Reg = "C100";
-            }
-
-            public RegistroC100(string linha)
-            {
-                IndOper = LerCamposSped.ReturnPosition(linha, 2).ToInt();
-                IndEmit = LerCamposSped.ReturnPosition(linha, 3).ToInt();
-                CodPart = LerCamposSped.ReturnPosition(linha, 4).ToStringSafe();
-                CodMod = LerCamposSped.ReturnPosition(linha, 5).ToStringSafe();
-                CodSit = LerCamposSped.ReturnPosition(linha, 6).ToInt();
-                Ser = LerCamposSped.ReturnPosition(linha, 7).ToStringSafe();
-                NumDoc = LerCamposSped.ReturnPosition(linha, 8).ToStringSafe();
-                ChvNfe = LerCamposSped.ReturnPosition(linha, 9).ToStringSafe();
-                DtDoc = LerCamposSped.ReturnPosition(linha, 10).ToDateTime();
-                DtEs = LerCamposSped.ReturnPosition(linha, 11).ToDateTimeNullable();
-                VlDoc = LerCamposSped.ReturnPosition(linha, 12).ToDecimal();
-                IndPgto = LerCamposSped.ReturnPosition(linha, 13).ToInt();
-                VlDesc = LerCamposSped.ReturnPosition(linha, 14).ToDecimal();
-                VlAbatNt = LerCamposSped.ReturnPosition(linha, 15).ToDecimal();
-                VlMerc = LerCamposSped.ReturnPosition(linha, 16).ToDecimal();
-                IndFrt = LerCamposSped.ReturnPosition(linha, 17).ToInt();
-                VlFrt = LerCamposSped.ReturnPosition(linha, 18).ToDecimal();
-                VlSeg = LerCamposSped.ReturnPosition(linha, 19).ToDecimal();
-                VlOutDa = LerCamposSped.ReturnPosition(linha, 20).ToDecimal();
-                VlBcIcms = LerCamposSped.ReturnPosition(linha, 21).ToDecimal();
-                VlIcms = LerCamposSped.ReturnPosition(linha, 22).ToDecimal();
-                VlBcIcmsSt = LerCamposSped.ReturnPosition(linha, 23).ToDecimal();
-                VlIcmsSt = LerCamposSped.ReturnPosition(linha, 24).ToDecimal();
-                VlIpi = LerCamposSped.ReturnPosition(linha, 25).ToDecimal();
-                VlPis = LerCamposSped.ReturnPosition(linha, 26).ToDecimal();
-                VlCofins = LerCamposSped.ReturnPosition(linha, 27).ToDecimal();
-                VlPisSt = LerCamposSped.ReturnPosition(linha, 28).ToDecimal();
-                VlCofinsSt = LerCamposSped.ReturnPosition(linha, 29).ToDecimal();
-            }
+            }            
 
             /// <summary>
             ///     Indicador do tipo de operação:
@@ -130,8 +113,8 @@ namespace SpedBr.SpedFiscal
             /// <summary>
             ///     Data da emissão do documento fiscal
             /// </summary>
-            [SpedCampos(10, "DT_DOC", "N", 8, 0, true)]
-            public DateTime DtDoc { get; set; }
+            [SpedCampos(10, "DT_DOC", "N", 8, 0, false)]
+            public DateTime? DtDoc { get; set; }
 
             /// <summary>
             ///     Data da entrada ou da saída
@@ -142,8 +125,8 @@ namespace SpedBr.SpedFiscal
             /// <summary>
             ///     Valor total do documento fiscal
             /// </summary>
-            [SpedCampos(12, "VL_DOC", "N", 0, 2, true)]
-            public decimal VlDoc { get; set; }
+            [SpedCampos(12, "VL_DOC", "N", 0, 2, false)]
+            public decimal? VlDoc { get; set; }
 
             /// <summary>
             ///     Indicador do tipo de pagamento:
@@ -152,8 +135,8 @@ namespace SpedBr.SpedFiscal
             ///     2 - Outros (a partir de 01/07/2012).
             ///     9 - Sem pagamento (até 30/06/2012).
             /// </summary>
-            [SpedCampos(13, "IND_PGTO", "C", 1, 0, true)]
-            public int IndPgto { get; set; }
+            [SpedCampos(13, "IND_PGTO", "C", 1, 0, false)]
+            public int? IndPgto { get; set; }
 
             /// <summary>
             ///     Valor total do desconto
@@ -255,6 +238,18 @@ namespace SpedBr.SpedFiscal
             /// </summary>
             [SpedCampos(29, "VL_COFINS_ST", "N", 0, 2, false)]
             public decimal? VlCofinsSt { get; set; }
+
+            public List<RegistroC101> RegC101s { get; set; }
+            public List<RegistroC105> RegC105s { get; set; }
+            public List<RegistroC110> RegC110s { get; set; }
+            public List<RegistroC120> RegC120s { get; set; }
+            public List<RegistroC130> RegC130s { get; set; }
+            public List<RegistroC140> RegC140s { get; set; }
+            public List<RegistroC160> RegC160s { get; set; }
+            public List<RegistroC165> RegC165s { get; set; }
+            public List<RegistroC170> RegC170s { get; set; }
+            public List<RegistroC190> RegC190s { get; set; }
+            public List<RegistroC195> RegC195s { get; set; }
         }
 
         /// <summary>
@@ -345,6 +340,13 @@ namespace SpedBr.SpedFiscal
             /// </summary>
             [SpedCampos(3, "TXT_COMPL", "C", 999, 0, false)]
             public string TxtCompl { get; set; }
+
+            public List<RegistroC111> RegC111s { get; set; }
+            public List<RegistroC112> RegC112s { get; set; }
+            public List<RegistroC113> RegC113s { get; set; }
+            public List<RegistroC114> RegC114s { get; set; }
+            public List<RegistroC115> RegC115s { get; set; }
+            public List<RegistroC116> RegC116s { get; set; }
         }
 
         /// <summary>
@@ -842,6 +844,8 @@ namespace SpedBr.SpedFiscal
             /// </summary>
             [SpedCampos(7, "VL_TIT", "N", 0, 2, true)]
             public decimal VlTit { get; set; }
+
+            public List<RegistroC141> RegC141s { get; set; }
         }
 
         /// <summary>
@@ -1250,6 +1254,22 @@ namespace SpedBr.SpedFiscal
             /// </summary>
             [SpedCampos(37, "COD_CTA", "C", 999, 0, false)]
             public string CodCta { get; set; }
+
+            /// <summary>
+            ///     Valor do abatimento não tributado e não comercial
+            /// </summary>
+            [SpedCampos(38, "VL_ABAT_NT", "N", 0, 2, false)]
+            public decimal? VlAbatNt { get; set; }
+
+            public List<RegistroC171> RegC171s { get; set; }
+            public RegistroC172 RegC172 { get; set; }
+            public List<RegistroC173> RegC173s { get; set; }
+            public List<RegistroC174> RegC174s { get; set; }
+            public List<RegistroC175> RegC175s { get; set; }
+            public List<RegistroC176> RegC176s { get; set; }
+            public RegistroC177 RegC177 { get; set; }
+            public RegistroC178 RegC178 { get; set; }
+            public RegistroC179 RegC179 { get; set; }
         }
 
         /// <summary>
@@ -1736,6 +1756,8 @@ namespace SpedBr.SpedFiscal
             /// </summary>
             [SpedCampos(3, "TXT_COMPL", "C", 999, 0, false)]
             public string TxtCompl { get; set; }
+
+            public List<RegistroC197> RegC197s { get; set; }
         }
 
         /// <summary>
@@ -1866,6 +1888,9 @@ namespace SpedBr.SpedFiscal
             /// </summary>
             [SpedCampos(11, "COD_CTA", "C", 999, 0, false)]
             public string CodCta { get; set; }
+
+            public List<RegistroC310> RegC310s { get; set; }
+            public List<RegistroC320> RegC320s { get; set; }
         }
 
         /// <summary>
@@ -1950,6 +1975,8 @@ namespace SpedBr.SpedFiscal
             /// </summary>
             [SpedCampos(9, "COD_OBS", "C", 6, 0, false)]
             public string CodObs { get; set; }
+
+            public List<RegistroC321> RegC321s { get; set; }
         }
 
         /// <summary>
@@ -2098,6 +2125,9 @@ namespace SpedBr.SpedFiscal
             /// </summary>
             [SpedCampos(12, "COD_CTA", "C", 999, 0, false)]
             public string CodCta { get; set; }
+
+            public List<RegistroC370> RegC370s { get; set; }
+            public List<RegistroC370> RegC390s { get; set; }
         }
 
         /// <summary>
@@ -2250,6 +2280,8 @@ namespace SpedBr.SpedFiscal
             /// </summary>
             [SpedCampos(5, "ECF_CX", "N", 3, 0, true)]
             public int EcfCx { get; set; }
+
+            public List<RegistroC405> RegC405s { get; set; }
         }
 
         /// <summary>
@@ -2300,6 +2332,11 @@ namespace SpedBr.SpedFiscal
             /// </summary>
             [SpedCampos(7, "VL_BRT", "N", 0, 2, true)]
             public decimal VlBrt { get; set; }
+
+            public List<RegistroC410> RegC410s { get; set; }
+            public List<RegistroC420> RegC420s { get; set; }
+            public List<RegistroC460> RegC460s { get; set; }
+            public List<RegistroC490> RegC490s { get; set; }
         }
 
         /// <summary>
@@ -2365,6 +2402,8 @@ namespace SpedBr.SpedFiscal
             /// </summary>
             [SpedCampos(5, "DESCR_NR_TOT", "C", 999, 0, false)]
             public string DescrNrTot { get; set; }
+
+            public List<RegistroC420> RegC425s { get; set; }
         }
 
         /// <summary>
@@ -2483,6 +2522,9 @@ namespace SpedBr.SpedFiscal
             /// </summary>
             [SpedCampos(10, "NOM_ADQ", "C", 60, 0, false)]
             public string NomeAdq { get; set; }
+
+            public RegistroC465 RegC465 { get; set; }
+            public List<RegistroC470> RegC470s { get; set; }
         }
 
         /// <summary>
@@ -2999,6 +3041,9 @@ namespace SpedBr.SpedFiscal
             /// </remarks>
             [SpedCampos(27, "COD_GRUPO_TENSAO", "C", 2, 0, false)]
             public int? CodGrupoTensao { get; set; }
+
+            public List<RegistroC510> RegC510s { get; set; }
+            public List<RegistroC590> RegC590s { get; set; }
         }
 
         /// <summary>
@@ -3377,6 +3422,10 @@ namespace SpedBr.SpedFiscal
             /// </summary>
             [SpedCampos(22, "VL_COFINS", "N", 0, 2, false)]
             public decimal VlCofins { get; set; }
+
+            public List<RegistroC601> RegC601s { get; set; }
+            public List<RegistroC610> RegC610s { get; set; }
+            public List<RegistroC690> RegC690s { get; set; }
         }
 
         /// <summary>
@@ -3649,6 +3698,8 @@ namespace SpedBr.SpedFiscal
             /// </summary>
             [SpedCampos(9, "CHV_COD_DIG", "C", 32, 0, true)]
             public string ChvCodDig { get; set; }
+
+            public List<RegistroC790> RegC790s { get; set; }
         }
 
         /// <summary>
@@ -3728,6 +3779,8 @@ namespace SpedBr.SpedFiscal
             /// </summary>
             [SpedCampos(11, "COD_OBS", "C", 6, 0, false)]
             public string CodObs { get; set; }
+
+            public List<RegistroC791> RegC791s { get; set; }
         }
 
         /// <summary>
@@ -3796,26 +3849,26 @@ namespace SpedBr.SpedFiscal
             /// <summary>
             ///     Data da emissão do Cupom Fiscal Eletrônico
             /// </summary>
-            [SpedCampos(5, "DT_DOC", "N", 8, 0, true)]
-            public DateTime DtDoc { get; set; }
+            [SpedCampos(5, "DT_DOC", "N", 8, 0, false)]
+            public DateTime? DtDoc { get; set; }
 
             /// <summary>
             ///     Valor total do Cupom Fiscal Eletrônico
             /// </summary>
-            [SpedCampos(6, "VL_CFE", "N", 0, 2, true)]
-            public decimal VlCfe { get; set; }
+            [SpedCampos(6, "VL_CFE", "N", 0, 2, false)]
+            public decimal? VlCfe { get; set; }
 
             /// <summary>
             ///     Valor total do PIS
             /// </summary>
             [SpedCampos(7, "VL_PIS", "N", 0, 2, false)]
-            public decimal VlPis { get; set; }
+            public decimal? VlPis { get; set; }
 
             /// <summary>
             ///     Valor total da COFINS
             /// </summary>
             [SpedCampos(8, "VL_COFINS", "N", 0, 2, false)]
-            public decimal VlCofins { get; set; }
+            public decimal? VlCofins { get; set; }
 
             /// <summary>
             ///     CNPJ ou CPF do destinatário
@@ -3838,38 +3891,40 @@ namespace SpedBr.SpedFiscal
             /// <summary>
             ///     Valor total do desconto
             /// </summary>
-            [SpedCampos(12, "VL_DESC", "N", 0, 2, true)]
-            public decimal VlDesc { get; set; }
+            [SpedCampos(12, "VL_DESC", "N", 0, 2, false)]
+            public decimal? VlDesc { get; set; }
 
             /// <summary>
             ///     Valor total das mercadorias e serviços
             /// </summary>
-            [SpedCampos(13, "VL_MERC", "N", 0, 2, true)]
-            public decimal VlMerc { get; set; }
+            [SpedCampos(13, "VL_MERC", "N", 0, 2, false)]
+            public decimal? VlMerc { get; set; }
 
             /// <summary>
             ///     Valor de outras despesas acessórias
             /// </summary>
-            [SpedCampos(14, "VL_OUT_DA", "N", 0, 2, true)]
-            public decimal VlOutDa { get; set; }
+            [SpedCampos(14, "VL_OUT_DA", "N", 0, 2, false)]
+            public decimal? VlOutDa { get; set; }
 
             /// <summary>
             ///     Valor do ICMS
             /// </summary>
-            [SpedCampos(15, "VL_ICMS", "N", 0, 2, true)]
-            public decimal VlIcms { get; set; }
+            [SpedCampos(15, "VL_ICMS", "N", 0, 2, false)]
+            public decimal? VlIcms { get; set; }
 
             /// <summary>
             ///     Valor total do PIS retido por substituição tributária
             /// </summary>
-            [SpedCampos(16, "VL_PIS_ST", "N", 0, 2, true)]
-            public decimal VlPisSt { get; set; }
+            [SpedCampos(16, "VL_PIS_ST", "N", 0, 2, false)]
+            public decimal? VlPisSt { get; set; }
 
             /// <summary>
             ///     Valor total da COFINS retido por substituição tributária
             /// </summary>
-            [SpedCampos(17, "VL_COFINS_ST", "N", 0, 2, true)]
-            public decimal VlCofinsSt { get; set; }
+            [SpedCampos(17, "VL_COFINS_ST", "N", 0, 2, false)]
+            public decimal? VlCofinsSt { get; set; }
+
+            public List<RegistroC850> RegC850s { get; set; }
         }
 
         /// <summary>
@@ -3986,6 +4041,8 @@ namespace SpedBr.SpedFiscal
             /// </remarks>
             [SpedCampos(6, "DOC_FIM", "N", 6, 0, true)]
             public int NumDocFin { get; set; }
+
+            public List<RegistroC890> RegC890s { get; set; }
         }
 
         /// <summary>
